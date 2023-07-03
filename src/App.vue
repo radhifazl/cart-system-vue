@@ -3,9 +3,12 @@ import { computed, ref } from 'vue';
 import Button from './components/Button.vue';
 import ProductCard from './components/ProductCard.vue';
 import ProductCart from './components/ProductCart.vue';
+
 const products = ref([])
 const carts = ref([])
 
+
+// CODE UNTUK FETCH DATA PRODUCT
 const fetchProducts = async () => {
   const res = await fetch('https://fakestoreapi.com/products')
   const data = await res.json()
@@ -14,6 +17,8 @@ const fetchProducts = async () => {
 
 fetchProducts()
 
+
+// CODE UNTUK MENAMBAHKAN PRODUCT KE CART
 const addToCart = (product) => {
   const addedItem = carts.value.find((item) => item.id === product.id)
 
@@ -27,10 +32,12 @@ const addToCart = (product) => {
   }
 }
 
+// CODE UNTUK MENGHAPUS PRODUCT DI CART
 const deleteCart = (id) => {
   carts.value = carts.value.filter((cart) => cart.id !== id)
 }
 
+//CODE UNTUK MENGHITUNG TOTAL HARGA DI DALAM CART
 const totalPrice = computed(() => {
   const total = carts.value.reduce((acc, cart) => {
     return acc + cart.price * cart.quantity;
