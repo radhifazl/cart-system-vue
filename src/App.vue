@@ -5,7 +5,11 @@ import CartsContainer from './components/CartsContainer.vue';
 import Header from './components/Header.vue';
 import ProductCard from './components/ProductCard.vue';
 import ProductCart from './components/ProductCart.vue';
+import Alert from './components/Alert.vue';
 
+
+const navStatus = ref(false)
+const status = ref(false)
 const products = ref([])
 const carts = ref([])
 
@@ -31,6 +35,12 @@ const addToCart = (product) => {
       ...product,
       quantity: 1
     })
+    setTimeout(() => {
+      status.value = true
+      setTimeout(() => {
+        status.value = false
+      }, 3000)
+    }, 100)
   }
 }
 
@@ -47,12 +57,11 @@ const totalPrice = computed(() => {
 
   return total.toFixed(2);
 })
-
-const navStatus = ref(false)
 </script>
 
 <template>
   <div class="p-5 w-full">
+    <Alert :status="status"/>
     <Header @click="navStatus = true" :totalProduct="carts.length"/>
 
     <div class="w-full flex justify-between items-start relative">
