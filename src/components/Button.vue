@@ -1,5 +1,14 @@
 <script setup>
-defineProps(['text'])
+defineProps({
+    text: {
+        type: String,
+        default: 'Add to Cart'
+    },
+    cart: {
+        type: Boolean,
+        default: false
+    }
+})
 </script>
 <template>
     <button 
@@ -9,7 +18,10 @@ defineProps(['text'])
             border-none outline-none
         "
     >
-        {{ text }}
+        <span v-if="!cart">
+            {{ text }}
+        </span>
+        <i class='bx bx-fw bx-cart-add' v-else></i>
     </button>
 </template>
 <style>

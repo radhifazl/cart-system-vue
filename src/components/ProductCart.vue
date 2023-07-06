@@ -5,8 +5,8 @@ const props = defineProps(['img', 'title', 'price', 'alt', 'quantity'])
 <template>
     <div 
         class="
-            cart w-[300px] h-[150px] rounded-md px-4 py-3 shadow-xl flex justify-between items-center
-            bg-white text-gray-600 mb-5
+            cart w-full h-[150px] rounded-md px-4 py-3 shadow-xl flex justify-between items-center
+            bg-white text-gray-600 mb-5 border-gray-200 border
         "
     
     >
